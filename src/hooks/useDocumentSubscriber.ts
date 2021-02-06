@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-
 import { docData } from 'rxfire/firestore';
 import { take } from 'rxjs/operators';
-import WithId from '../types/WithId';
 
+import WithId from '../types/WithId';
 import { firebase } from '../utils/firebase';
 
 interface UseDocumentSubscriberOptions {
@@ -17,19 +17,17 @@ if (!Object.entries) {
     const ownProps = Object.keys(obj);
     let i = ownProps.length;
     const resArray = new Array(i); // preallocate the Array
-    while (i--) {
+    while (i) {
       resArray[i] = [ownProps[i], obj[ownProps[i]]];
+      i -= 1;
     }
 
     return resArray;
   };
 }
 
-const isEmpty = (obj: any) => {
-  return (
-    !obj || (Object.entries(obj).length === 0 && obj.constructor === Object)
-  );
-};
+const isEmpty = (obj: any) =>
+  !obj || (Object.entries(obj).length === 0 && obj.constructor === Object);
 
 const useDocumentSubscriber = <T>(
   docRef: firebase.firestore.DocumentReference | null,
@@ -58,17 +56,13 @@ const useDocumentSubscriber = <T>(
       if (options.subscribe !== false) return unsubscribeFn;
 
       return undefined;
-    } else {
-      return undefined;
     }
+    return undefined;
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(subscribeToDocument, [
     // ignore linting here: these dependencies are just as intended ;)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     docRef ? docRef.path : null,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     ...(options.deps ?? []),
     options.subscribe,
   ]);

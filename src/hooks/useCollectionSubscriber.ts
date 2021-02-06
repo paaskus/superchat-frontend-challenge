@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-
 import { collectionData } from 'rxfire/firestore';
 import { combineLatest } from 'rxjs';
-import WithId from '../types/WithId';
 
+import WithId from '../types/WithId';
 import { firebase } from '../utils/firebase';
 
 interface UseCollectionSubscriberParams {
@@ -33,7 +33,6 @@ const useCollectionSubscriber = <T>({
     return () => subscription.unsubscribe();
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(subscribeToCollection, deps);
 
   return documents;
