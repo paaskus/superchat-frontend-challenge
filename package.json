@@ -10,12 +10,12 @@
     "@types/node": "12.0.0",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
+    "@types/react-router-dom": "5.1.7",
     "@types/styled-components": "5.1.7",
     "firebase": "8.2.6",
     "formik": "2.2.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.2",
     "rxfire": "4.0.0",
@@ -27,13 +27,31 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
+      "airbnb-typescript",
+      "prettier",
+      "prettier/@typescript-eslint",
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "plugins": [
+      "simple-import-sort"
+    ],
+    "rules": {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "sort-imports": "off",
+      "import/order": "off",
+      "react/react-in-jsx-scope": "off"
+    },
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
   },
   "browserslist": {
     "production": [
@@ -46,5 +64,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "4.14.2",
+    "eslint-config-airbnb-typescript": "12.3.1",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-plugin-simple-import-sort": "7.0.0"
   }
 }
