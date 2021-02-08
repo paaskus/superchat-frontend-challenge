@@ -1,40 +1,25 @@
-import useCollectionSubscriber from '../hooks/useCollectionSubscriber';
-import LinkService from '../services/link.service';
-import LinkDefinition from '../types/LinkDefinition';
-import { firestore } from '../utils/firebase';
+import React from 'react';
+import styled from 'styled-components';
 
-const Home = () => {
-  const links = useCollectionSubscriber<LinkDefinition>({
-    queries: [firestore.collection('links')],
-  });
+import LinkCreator from '../components/LinkCreator';
 
-  return (
-    <div>
-      <p>🔥 GitHub SuperLinks</p>
-      <button
-        type="button"
-        onClick={() => {
-          LinkService.createLink({
-            username: 'facebook',
-            repository: 'react',
-            iconId: '1',
-            color: '#000000',
-          });
-        }}
-      >
-        Create link
-      </button>
-      {links && (
-        <ul>
-          {links.map((l) => (
-            <li key={l.id}>
-              <a href={`/r/${l.id}`}>{`${l.username}/${l.repository}`}</a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 3rem;
+  box-sizing: border-box;
+`;
 
+const Home = () => (
+  // const links = useCollectionSubscriber<LinkDefinition>({
+  //   queries: [firestore.collection('links')],
+  // });
+
+  <Wrapper>
+    <h1>🔥 GitHub SuperLinks</h1>
+    <LinkCreator />
+  </Wrapper>
+);
 export default Home;
