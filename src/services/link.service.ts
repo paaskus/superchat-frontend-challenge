@@ -1,10 +1,12 @@
+import ColorName from '../types/ColorName';
+import IconName from '../types/IconName';
 import { firestore } from '../utils/firebase';
 
-interface CreateLinkArgs {
+export interface CreateLinkArgs {
   username: string;
   repository: string;
-  iconId: string;
-  color: string;
+  icon: IconName;
+  color: ColorName;
 }
 
 export default class LinkService {
