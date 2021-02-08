@@ -19,7 +19,7 @@ const Wrapper = styled.section`
 
 const LinkCreator = () => {
   const [icon, setIcon] = useState<IconName>(IconName.FIRE);
-  const [color, setColor] = useState<ColorName>(ColorName.BLUE);
+  const [color, setColor] = useState<ColorName>(ColorName.MAGENTA);
   const [username, setUsername] = useState<string>('');
   const [repository, setRepository] = useState<string>('');
   const [linkId, setLinkId] = useState<string | null>(null);
