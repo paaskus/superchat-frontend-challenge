@@ -10,6 +10,13 @@ Linting is included through `eslint` (run `yarn lint` or `yarn lint:fix`). No au
 
 Based on `create-react-app`.
 
+## Using the app
+
+1. Enter a GitHub username in the first input field.
+2. Enter a repository name belonging to that GitHub user in the second input field.
+3. Select a color and an icon.
+4. Generate the link and check it out!
+
 ## CSS Modules
 
 Regarding using CSS modules, I have avoided it in this project, since Styled-Components avoids the problem of clashing stylesheets.
