@@ -8,6 +8,7 @@ import IconName from '../types/IconName';
 import Button from './Button';
 import ColorPicker from './ColorPicker';
 import IconPicker from './IconPicker';
+import Link from './Link';
 
 const Wrapper = styled.section`
   display: flex;
@@ -31,14 +32,18 @@ const LinkCreator = () => {
   if (linkId) {
     return (
       <Wrapper>
-        <h2>
-          Wuhuu! Your new awesome link to{' '}
+        <h2 style={{ textAlign: 'center' }}>
+          Wuhuu! Your new awesome link to
+          <br />
           <strong style={{ color: ColorName.MAGENTA }}>
             {`${username}/${repository}`}
           </strong>{' '}
+          <br />
           is:
         </h2>
-        <a href={`/r/${linkId}`}>{`${window.location.host}/r/${linkId}`}</a>
+        <Link href={`/r/${linkId}`}>
+          {`${window.location.host}/r/${linkId}`}
+        </Link>
       </Wrapper>
     );
   }

@@ -5,7 +5,7 @@ import useDocumentSubscriber from '../hooks/useDocumentSubscriber';
 import LinkDefinition from '../types/LinkDefinition';
 import { firestore } from '../utils/firebase';
 
-const Link = () => {
+const LinkPage = () => {
   const { linkId } = useParams<{ linkId: string }>();
   const link = useDocumentSubscriber<LinkDefinition>(
     linkId ? firestore.collection('links').doc(linkId) : null
@@ -16,12 +16,17 @@ const Link = () => {
   }
 
   return (
-    <p>
+    <>
       {link && (
-        <RepositoryContainer owner={link.username} name={link.repository} />
+        <RepositoryContainer
+          owner={link.username}
+          name={link.repository}
+          color={link.color}
+          icon={link.icon}
+        />
       )}
-    </p>
+    </>
   );
 };
 
-export default Link;
+export default LinkPage;

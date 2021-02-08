@@ -1,6 +1,6 @@
 export default interface LinkDefinition {
   username: string;
   repository: string;
-  iconId: string;
+  icon: string;
   color: string;
 }

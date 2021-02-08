@@ -12,14 +12,14 @@ const Wrapper = styled.section`
   box-sizing: border-box;
 `;
 
-const Home = () => (
+const HomePage = () => (
   // const links = useCollectionSubscriber<LinkDefinition>({
   //   queries: [firestore.collection('links')],
   // });
 
   <Wrapper>
-    <h1>🔥 GitHub SuperLinks</h1>
+    <h1 style={{ textAlign: 'center' }}>🔥 GitHub SuperLinks</h1>
     <LinkCreator />
   </Wrapper>
 );
-export default Home;
+export default HomePage;

@@ -23,7 +23,7 @@ interface RepositoryData {
   repository: {
     name: string;
     description: string;
-    stargazerCoint: number;
+    stargazerCount: number;
     url: string;
     createdAt: string;
     owner: {
@@ -36,12 +36,19 @@ interface RepositoryData {
 interface RepositoryContainerProps {
   owner: string;
   name: string;
+  color: string;
+  icon: string;
 }
 
-const RepositoryContainer: FC<RepositoryContainerProps> = ({ owner, name }) => {
+const RepositoryContainer: FC<RepositoryContainerProps> = ({
+  owner,
+  name,
+  color,
+  icon,
+}) => {
   const { loading, error, data } = useQuery<
     RepositoryData,
-    RepositoryContainerProps
+    Pick<RepositoryContainerProps, 'owner' | 'name'>
   >(GET_REPOSITORY, {
     variables: { owner, name },
   });
@@ -50,14 +57,15 @@ const RepositoryContainer: FC<RepositoryContainerProps> = ({ owner, name }) => {
     return <p>{JSON.stringify(error)}</p>;
   }
   if (loading) {
-    return <p>Loading...</p>;
+    return <h1>Loading...</h1>;
   }
 
   return (
     <>
       {data && (
         <Repository
-          stars={data.repository.stargazerCoint}
+          {...{ color, icon }}
+          stars={data.repository.stargazerCount}
           description={data.repository.description}
           name={data.repository.name}
           repositoryUrl={data.repository.url}

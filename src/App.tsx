@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Home from './routes/Home';
-import Link from './routes/Link';
+import HomePage from './routes/HomePage';
+import LinkPage from './routes/LinkPage';
 
 const App = () => (
   <Router>
     <Switch>
       <Route path="/r/:linkId">
-        <Link />
+        <LinkPage />
       </Route>
       <Route path="/">
-        <Home />
+        <HomePage />
       </Route>
     </Switch>
   </Router>
