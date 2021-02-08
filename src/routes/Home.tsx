@@ -1,9 +1,10 @@
 import useCollectionSubscriber from '../hooks/useCollectionSubscriber';
 import LinkService from '../services/link.service';
+import LinkDefinition from '../types/LinkDefinition';
 import { firestore } from '../utils/firebase';
 
 const Home = () => {
-  const links = useCollectionSubscriber({
+  const links = useCollectionSubscriber<LinkDefinition>({
     queries: [firestore.collection('links')],
   });
 
@@ -26,7 +27,9 @@ const Home = () => {
       {links && (
         <ul>
           {links.map((l) => (
-            <li key={l.id}>{JSON.stringify(l, null, 2)}</li>
+            <li key={l.id}>
+              <a href={`/r/${l.id}`}>{`${l.username}/${l.repository}`}</a>
+            </li>
           ))}
         </ul>
       )}

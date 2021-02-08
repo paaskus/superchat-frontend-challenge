@@ -1,38 +1,25 @@
-import { gql, useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
-const GET_REPOSITORY = gql`
-  query GetRepository {
-    repository(owner: "facebook", name: "react") {
-      name
-      description
-      stargazerCount
-      url
-      createdAt
-      owner {
-        avatarUrl
-        url
-      }
-    }
-  }
-`;
+import RepositoryContainer from '../components/RepositoryContainer';
+import useDocumentSubscriber from '../hooks/useDocumentSubscriber';
+import LinkDefinition from '../types/LinkDefinition';
+import { firestore } from '../utils/firebase';
 
 const Link = () => {
-  const { loading, error, data } = useQuery(GET_REPOSITORY);
   const { linkId } = useParams<{ linkId: string }>();
+  const link = useDocumentSubscriber<LinkDefinition>(
+    linkId ? firestore.collection('links').doc(linkId) : null
+  );
 
-  if (error) {
-    return <p>{JSON.stringify(error)}</p>;
-  }
-  if (loading) {
+  if (!link) {
     return <p>Loading...</p>;
   }
 
   return (
     <p>
-      Displaying link
-      {linkId}
-      {JSON.stringify(data)}
+      {link && (
+        <RepositoryContainer owner={link.username} name={link.repository} />
+      )}
     </p>
   );
 };
