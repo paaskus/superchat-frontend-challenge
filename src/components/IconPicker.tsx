@@ -46,7 +46,7 @@ const IconPicker: FC<IconPickerProps> = ({
 }) => (
   <List>
     {colors.map((i) => (
-      <Item onClick={() => onSelect(i)} isSelected={selected === i}>
+      <Item key={i} onClick={() => onSelect(i)} isSelected={selected === i}>
         {i}
       </Item>
     ))}

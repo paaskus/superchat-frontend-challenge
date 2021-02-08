@@ -45,7 +45,12 @@ interface ColorPickerProps {
 const ColorPicker: FC<ColorPickerProps> = ({ colors, selected, onSelect }) => (
   <List>
     {colors.map((c) => (
-      <Item onClick={() => onSelect(c)} color={c} isSelected={selected === c} />
+      <Item
+        key={c}
+        onClick={() => onSelect(c)}
+        color={c}
+        isSelected={selected === c}
+      />
     ))}
   </List>
 );
